@@ -18,6 +18,12 @@ s3 = boto3.client(
     region_name=AWS.REGION
 )
 
+@upload_router.post("/upload/bag-test")
+async def upload_bag_only(bag: UploadFile = File(...)):
+    print("Bag uploaded:", bag.filename)
+    return {"filename": bag.filename}
+
+
 @upload_router.post("/upload")
 async def upload(
     video_clip: UploadFile = File(...), 
@@ -26,6 +32,7 @@ async def upload(
     route: UploadFile = File(...),
     bag: UploadFile = File(...),
 ):
+    print(0)
 
 
 
