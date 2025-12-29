@@ -19,9 +19,15 @@ s3 = boto3.client(
 )
 
 @upload_router.post("/upload/bag-test")
-async def upload_bag_only(bag: UploadFile = File(max_size=100000000)):
+async def upload_bag_only(bag: UploadFile = File()):
     print("Bag uploaded:", bag.filename)
     return {"filename": bag.filename}
+
+@upload_router.post("/upload/any-test")
+async def upload_anything(request: Request):
+    body = await request.body()
+    print("Received body length:", len(body))
+    return {"size": len(body)}
 
 
 @upload_router.post("/upload")
