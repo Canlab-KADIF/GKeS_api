@@ -33,13 +33,13 @@ def check_primary_key(
     thumbnail_file_name: str,
     meta_file_name: str,
     route_file_name: str,
-    # bag_file_name: str,
+    bag_file_name: str,
 ):
     pk_meta = extract_primary_key(meta_file_name, "meta", ["json"])
     pk_route = extract_primary_key(route_file_name, "route", ["json"])
     pk_thumb = extract_primary_key(thumbnail_file_name, "thumbnail", ["jpg", "jpeg"])
     pk_video = extract_primary_key(video_clip_file_name, "video_clip", ["mp4"])
-    # pk_bag = extract_primary_key(bag_file_name, "raw", ["bag"])
+    pk_bag = extract_primary_key(bag_file_name, "raw", ["bag"])
 
     if len(set([pk_meta, pk_route, pk_thumb, pk_video])) != 1:
         raise HTTPException(status_code=400, detail="All files must have the same primary_key prefix.")
@@ -134,12 +134,12 @@ async def validation_and_insert(
     thumbnail_file_name: str,
     meta_file_name: str,
     route_file_name: str,
-    # bag_file_name: str,
+    bag_file_name: str,
 
     meta_data: dict,
     route_data: dict,
 ):
-    primary_key = check_primary_key(video_clip_file_name, thumbnail_file_name, meta_file_name, route_file_name)
+    primary_key = check_primary_key(video_clip_file_name, thumbnail_file_name, meta_file_name, route_file_name, bag_file_name)
     meta_data, route_data = check_json(meta_data, route_data)
     await check_db(primary_key)
     await insert_db(primary_key, meta_data, route_data)

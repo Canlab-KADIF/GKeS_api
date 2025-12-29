@@ -24,9 +24,8 @@ async def upload(
     thumbnail: UploadFile = File(...),
     meta: UploadFile = File(...),
     route: UploadFile = File(...),
-    # bag: UploadFile = File(...),
+    bag: UploadFile = File(...),
 ):
-    print(0)
 
 
 
@@ -50,7 +49,7 @@ async def upload(
         thumbnail.filename,               # String
         meta.filename,                    # String
         route.filename,                   # String
-        # bag.filename,                     # String
+        bag.filename,                     # String
 
         meta_data,                        # Dict
         route_data,                       # Dict
@@ -65,6 +64,6 @@ async def upload(
     s3.upload_fileobj(thumbnail.file, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{thumbnail.filename}")
     s3.upload_fileobj(meta.file, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{meta.filename}")
     s3.upload_fileobj(route.file, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{route.filename}")
-    # s3.upload_fileobj(bag.file, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{bag.filename}")
+    s3.upload_fileobj(bag.file, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{bag.filename}")
 
     return {"message": "All files uploaded successfully", "primary_key": primary_key}
