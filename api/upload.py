@@ -153,7 +153,7 @@ async def upload_zip(zip_file: UploadFile = File(...)):
         )
 
         print("6. UPLOAD TO S3")
-        primary_key = quote(primary_key)x
+        primary_key = quote(primary_key)
 
         # S3에 각 파일 업로드
         for key, path in extracted_paths.items():
