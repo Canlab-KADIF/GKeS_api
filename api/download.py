@@ -71,7 +71,7 @@ def packaging_and_download(
         print("4. ZIP FILE")
 
         # 압축 완료 후 S3에 업로드할 key 설정
-        packaged_key = f"{AWS.FOLDER}/{target_key}/{target_key}.zip"
+        packaged_key = f"zip/{target_key}.zip"
 
         print("5. ZIP FILE")
 
