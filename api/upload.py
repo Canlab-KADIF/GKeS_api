@@ -29,7 +29,7 @@ async def upload(
     thumbnail: UploadFile = File(...),
     meta: UploadFile = File(...),
     route: UploadFile = File(...),
-    # bag: UploadFile = File(...),
+    bag: UploadFile = File(...),
 ):
     print("1. UPLOAD")
 
