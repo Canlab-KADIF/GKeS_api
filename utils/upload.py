@@ -140,12 +140,8 @@ async def validation_and_insert(
     route_data: dict,
 ):
     primary_key = check_primary_key(video_clip_file_name, thumbnail_file_name, meta_file_name, route_file_name, bag_file_name)
-    print(1)
     meta_data, route_data = check_json(meta_data, route_data)
-    print(2)
     await check_db(primary_key)
-    print(3)
     await insert_db(primary_key, meta_data, route_data)
-    print(4)
 
     return primary_key
