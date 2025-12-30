@@ -160,12 +160,12 @@ async def upload_zip(zip_file: UploadFile = File(...)):
             with open(path, "rb") as f:
                 s3.upload_fileobj(f, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{quote(path.name)}")
 
-        print("7. UPLOAD ZIP")
+        # print("7. UPLOAD ZIP")
 
-        # ZIP 파일 자체도 업로드
-        with open(zip_path, "rb") as f:
-            s3.upload_fileobj(f, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{quote(zip_file.filename)}")
+        # # ZIP 파일 자체도 업로드
+        # with open(zip_path, "rb") as f:
+        #     s3.upload_fileobj(f, AWS.BUCKET, f"{AWS.FOLDER}/{primary_key}/{quote(zip_file.filename)}")
 
-    print("8. COMPLETE")
+    print("7. COMPLETE")
 
     return {"message": "Zip and contents uploaded successfully", "primary_key": primary_key}
